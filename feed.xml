@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel><!-- Please note this feed is currently experimental and may change. --><title>Followers of noobs2ninjas</title><link>https://www.livecoding.tv/rss/noobs2ninjas/followers/</link><description>A list of users who follow noobs2ninjas</description>
+    <atom:link href="https://www.livecoding.tv/rss/noobs2ninjas/followers/" rel="self">
+    </atom:link>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Oct 2015 23:04:03 -0000</lastBuildDate>
+    <item>
+        <title>InstalockGG</title><link>https://www.livecoding.tv/instalockgg/</link>
+        <description>InstalockGG</description>
+        <guid>https://www.livecoding.tv/instalockgg/</guid>
+    </item>
+</channel>
+</rss>

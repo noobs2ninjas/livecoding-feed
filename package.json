@@ -1,0 +1,26 @@
+{
+  "name": "livecoding-feed",
+  "version": "1.0.0",
+  "description": "Node RSS reader that checks streamers feed for new followers. This will also produce a link that a user can insert into OBS to do an animated overlay that plays a designated sound.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noobs2ninjas/livecoding-feed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noobs2ninjas/livecoding-feed/issues"
+  },
+  "homepage": "https://github.com/noobs2ninjas/livecoding-feed#readme",
+  "dependencies":{
+  	"express": "*",
+  	"socket.io": "*",
+  	"feed-watcher": "*",
+  	"jade": "*",
+  	"node-rss": "*"
+  }
+}
