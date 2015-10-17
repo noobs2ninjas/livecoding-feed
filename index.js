@@ -1,14 +1,14 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var express = require('express');
+var io = require('socket.io')();
+var http = require('http');
 var Watcher = require('rss-watcher');
 var key = 'S5B3342315z340lhuPxQM3';
 var feed = 'https://www.livecoding.tv/rss/noobs2ninjas/followers/?key='+key;
 var tempfeed = 'http://localhost:3000/rss/Followers.xml';
 var rss = require('node-rss');
-
+var app = express();
+app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'jade');
-
 //index page for creating new followers
 app.get('/', function(req, res){
   res.render('index');
@@ -36,6 +36,7 @@ app.get('/rss/Followers.xml', function(req, res){
 	res.set('Content-Type', 'application/rss+xml');
 	res.send(xmlString);
 });
+
 //
 io.on('connection', function(socket){
   	console.log('a user connected');
@@ -46,27 +47,24 @@ io.on('connection', function(socket){
   		feed.addNewItem(data.follower,{});
   	});
 });
-function beginWatching(){
-	watcher.run(function(error, currentFollowers){
-		currentFollowers.forEach(function(follower){
-			console.log(follower.title);
-		});
-	});
-}
+
+
+
 //setting up watcher
 watcher = new Watcher(tempfeed);
-beginWatching();
+watcher.run(function(error, currentFollowers){
+	currentFollowers.forEach(function(follower){
+		console.log(follower.title);
+	});
+});
+
 watcher.on('new article', function(follower){
-var name = follower.title;
 console.log('got new item');
-watcher.stop();
 //emit new follower when item is added to feed
-io.emit('new', {'name':name});
+io.emit('new', {'name':follower});
+console.log('username:'+follower)
 
-beginWatching();
 });
 
-http.listen(3000, function(){
-	console.log('listening on *:3000');
-});
-
+var server = http.createServer(app).listen(3000);
+io.listen(server);
